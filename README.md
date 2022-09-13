@@ -1,2 +1,2 @@
-# gradify
-Intuitive grading software for students
+# Gradify
+An intuitive grading software for students
