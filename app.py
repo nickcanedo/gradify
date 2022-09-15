@@ -139,12 +139,49 @@ def view():
 @app.route("/add", methods=["GET", "POST"])
 @login_required
 def add():
-    return render_template("add.html")
-
-
+    if request.method == "POST":
+        code = request.form.get("code")
+        name = request.form.get("name")
+        username = session['name']
+        
+        # form validation
+        if not code or not name:
+            error = "Please fill out both of the required fields"
+            return render_template("add.html", error=error, code=code, name=name)
+        else:
+            db.execute("INSERT INTO courses (username,course_name,course_code) VALUES (?,?,?);",username,name,code)
+            return redirect("/grades")
+    else:
+        return render_template("add.html")
+        
 
 
 @app.route("/drop", methods=["GET", "POST"])
 @login_required
 def drop():
-    return render_template("drop.html")
+    if request.method == "POST":
+        code = request.form.get('code')
+        name = request.form.get("name")
+        username = session['name']
+        error = False
+        
+        # FORM VALIDATION
+        
+        # if field(s) are empty
+        if not code or not name:
+            error = "Please fill out both of the required fields"
+            
+        # if course does not exist
+        course = db.execute("SELECT * FROM courses WHERE username = ? AND course_name = ? AND course_code = ?;",username,name,code)
+        if not course:
+            error = "That course does not exist"
+            
+        if error:
+            return render_template("drop.html", error=error,code=code,name=name)
+
+        # drop course
+        db.execute("DELETE FROM courses WHERE username = ? AND course_name = ? AND course_code = ?;",username,name,code)
+        return redirect('/grades')
+    
+    else:
+        return render_template("drop.html")

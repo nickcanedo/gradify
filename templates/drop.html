@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drop Courses</title>
+    <title>Add Courses</title>
     <link rel="stylesheet" href="../static/style.css">
     <link rel="icon" href="../static/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,12 +13,25 @@
     <!-- CSS only Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/040e3267e7.js" crossorigin="anonymous"></script>
-    <script src="../static/script.js" defer></script>
 </head>
 <body>
     <div class="hero2">
-        <div class="container-fluid">
+        <div class="container-fluid navicons">
+            <a href="/drop"><i class="fa-solid fa-minus navicon"></i></a>
+            <a href="/add"><i class="fa-solid fa-plus navicon2"></i></a>
+            <a href="/grades"><i class="fa-solid fa-table"></i></a>
             <a href="/"><i class="fa-solid fa-house house2"></i></a>
+        </div>
+        <div class="container-fluid inputform">
+            <p class="formtext2">Drop Course</p>
+            {% if error %}
+                <div class="err-msg">{{ error }}</div>
+            {% endif %}
+            <form action="/drop" method="POST">
+                <input required type="text" name="code" class="code" placeholder="Course Code">
+                <input required type="text" name="name" class="name" placeholder="Course Name">
+                <button type="submit" class="btn btn-danger">Drop Course</button>
+            </form>
         </div>
     </div>
 </body>

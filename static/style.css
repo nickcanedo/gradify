@@ -112,9 +112,14 @@ button[type="submit"] {
     margin-top: 1vmax;
 }
 
-p.formtext {
+p.formtext,
+p.formtext2 {
     font-size: 1.5vmax;
     margin-bottom: 0.8vmax;
+}
+
+p.formtext2 {
+    margin-top: 15vmax;
 }
 
 .err-msg {
@@ -165,4 +170,28 @@ a:hover {
     right: 0%;
     margin-right: 1.5vmax;
     margin-top: 1vmax;
+}
+
+.inputform {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 20vw !important;
+    margin-left: 50vmax !important;
+}
+
+.container-fluid a {
+    margin-right: 0.5vmax;
+}
+
+.navicon {
+    margin-left: 88vw;
+    margin-right: 0.5vmax;
+    margin-top: 1vmax;
+}
+
+.navicon2 {
+    margin-right: 0.5vmax;
 }

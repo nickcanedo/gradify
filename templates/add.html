@@ -16,8 +16,22 @@
 </head>
 <body>
     <div class="hero2">
-        <div class="container-fluid">
+        <div class="container-fluid navicons">
+            <a href="/drop"><i class="fa-solid fa-minus navicon"></i></a>
+            <a href="/add"><i class="fa-solid fa-plus navicon2"></i></a>
+            <a href="/grades"><i class="fa-solid fa-table"></i></a>
             <a href="/"><i class="fa-solid fa-house house2"></i></a>
+        </div>
+        <div class="container-fluid inputform">
+            <p class="formtext2">Add Course</p>
+            {% if error %}
+                <div class="err-msg">{{ error }}</div>
+            {% endif %}
+            <form action="/add" method="POST">
+                <input required type="text" name="code" class="code" placeholder="Course Code">
+                <input required type="text" name="name" class="name" placeholder="Course Name">
+                <button type="submit" class="btn btn-success">Add Course</button>
+            </form>
         </div>
     </div>
 </body>
