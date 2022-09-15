@@ -13,21 +13,26 @@
     <!-- CSS only Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/040e3267e7.js" crossorigin="anonymous"></script>
-    <script src="../static/script.js" defer></script>
 </head>
 <body>
     <div class="hero">
-        <div class="header1">
-            <a href="/logout"><div class="navlink">Log Out</div></a>
+        <div class="header">
+            <a href="/login"><div class="navlink">Log In</div></a>
+            <a href="/register"><div class="navlink">Register</div></a>
         </div>
-        <div class="titles">
+        <div class="titles2">
             <h1 class="logo">Gradify</h1>
             <hr>
-            <p class="motto">Keep track of your grades</p>
-            <div class="links">
-                <a href="/add"><i class="fa-solid fa-plus"></i></a>
-                <a href="/grades"><i class="fa-solid fa-table"></i></a>
-                <a href="/drop"><i class="fa-solid fa-minus"></i></a>
+            <p class="formtext">Log In</p>
+            <div class="form">
+                <form action="/login" method="POST">
+                    {% if error %}
+                    <div class="err-msg">{{ error }}</div>
+                    {% endif %}
+                    <input required type="text" name="username" class="username" placeholder="Username">
+                    <input required type="password" name="password" class="password" placeholder="Password">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
         <footer>
