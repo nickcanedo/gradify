@@ -213,6 +213,12 @@ select {
     margin-top: 1vmax;
 }
 
+.house4 {
+    margin-left: 1vmax;
+    margin-top: 1vmax;
+    margin-right: 1vmax;
+}
+
 .viewtext {
     margin-top: 1vmax;
     font-weight: bold;
@@ -221,6 +227,7 @@ select {
 .viewicons {
     margin-top: 1vmax;
     margin-right: 1vmax;
+    white-space: nowrap;
 }
 
 .headertext,
