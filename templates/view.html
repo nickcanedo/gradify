@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Grades</title>
+    <title>View Assignments</title>
     <link rel="stylesheet" href="../static/style.css">
     <link rel="icon" href="../static/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,11 +17,15 @@
 <body>
     <!-- Table using bootstrap -->
     <div class="container-fluid">
-        <table class="table table-striped">
-            <tr>
-                <th>{{ course[0]['course_code'] }}: {{ course[0]['course_name'] }}</th>
-            </tr>
-        </table>
+        <div class="container-fluid viewlinks">
+            <a href="/"><i class="fa-solid fa-house house3"></i></a>
+            <p class="viewtext">{{ course[0]['course_code'] }}: {{ course[0]['course_name'] }}</p>
+            <div class="viewicons">
+                <a href="/grades"><i class="fa-solid fa-table"></i></a>
+                <a href="/add"><i class="fa-solid fa-plus"></i></a>
+                <a href="/drop"><i class="fa-solid fa-minus"></i></a>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -40,21 +44,29 @@
                 {% endfor %}
                 <tr>
                     <td>
-                        <a href="/assignmentadd"><i class="fa-solid fa-plus"></i></a>
+                        <form action="/assignmentadd" method="GET">
+                            <input type="hidden" name="course" value="{{ code }}">
+                            <button type="submit" class="btn btn-link"><i class="fa-solid fa-plus"></i></button>
+                        </form>
                     </td>
                     <td>
-                        <a href="/grades"><i class="fa-solid fa-table"></i></a>
+                        <form action="/grades" method="GET">
+                            <button type="submit" class="btn btn-link"><i class="fa-solid fa-table"></i></button>
+                        </form>
                     </td>
                     <td>
-                        <a href="/assignmentremove"><i class="fa-solid fa-minus"></i></a>
+                        <form action="/assignmentremove" method="GET">
+                            <input type="hidden" name="course" value="{{ code }}">
+                            <button type="submit" class="btn btn-link"><i class="fa-solid fa-minus"></i></button>
+                        </form>
                     </td>
                 </tr>
             </tbody>
             <tfoot class="table-group-divider">
                 <tr>
                     <th>TOTALS</th>
-                    <th>2%</th>
-                    <th>96%</th>
+                    <th>{{ weight }}%</th>
+                    <th>{{ grade }}%</th>
                 </tr>
             </tfoot>
         </table>

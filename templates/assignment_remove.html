@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Courses</title>
+    <title>Remove Assignments</title>
     <link rel="stylesheet" href="../static/style.css">
     <link rel="icon" href="../static/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +18,9 @@
     <div class="hero2">
         <div class="container-fluid navicons">
             <a href="/drop"><i class="fa-solid fa-minus navicon"></i></a>
-            <a href="/add"><i class="fa-solid fa-plus navicon2"></i></a>
-            <a href="/grades"><i class="fa-solid fa-table"></i></a>
-            <a href="/"><i class="fa-solid fa-house house2"></i></a>
+            <a href="/add"><i class="fa-solid fa-plus navicon"></i></a>
+            <a href="/grades"><i class="fa-solid fa-table navicon"></i></a>
+            <a href="/"><i class="fa-solid fa-house navicon"></i></a>
         </div>
         <div class="container-fluid inputform">
             <p class="formtext2">Remove Assignment</p>
@@ -28,8 +28,12 @@
                 <div class="err-msg">{{ error }}</div>
             {% endif %}
             <form action="/assignmentremove" method="POST">
-                <input required type="text" name="course" class="course" placeholder="Course Code">
-                <input required type="text" name="name" class="name" placeholder="Assignment Name">
+                <input type="hidden" value="{{ course }}" name="course" class="course" placeholder="Course Code">
+                <select name="name" id="name">
+                    {% for assignment in assignments %}
+                        <option value="{{ assignment['assignment_name'] }}">{{ assignment['assignment_name'] }}</option>
+                    {% endfor %}
+                </select>
                 <button type="submit" class="btn btn-danger">Remove Assignment</button>
             </form>
         </div>

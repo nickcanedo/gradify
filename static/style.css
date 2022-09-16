@@ -134,19 +134,20 @@ p.formtext2 {
     top: 0%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
+    padding-right: 1.5vmax !important;
     padding-top: 1vmax;
-    padding-left: 85vw;
 }
 
-.header1 {
-    padding-left: 90vw;
+.fa-user {
+    color: black;
 }
 
 .navlink {
     color: black;
     padding-left: 2vmax;
     white-space: nowrap;
+    font-size: 1.2vmax;
 }
 
 .header a,
@@ -160,16 +161,6 @@ a:hover {
 
 .fa-house {
     color: black;
-    margin-left: 1vmax;
-    margin-top: 1vmax;
-}
-
-.house2 {
-    position: absolute;
-    color: black;
-    right: 0%;
-    margin-right: 1.5vmax;
-    margin-top: 1vmax;
 }
 
 .inputform {
@@ -178,24 +169,92 @@ a:hover {
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    width: 20vw !important;
-    margin-left: 50vmax !important;
+    width: 20vmax !important;
+    position: absolute;
+    right: 30%;
 }
 
 .container-fluid a {
     margin-right: 0.5vmax;
 }
 
+.navicons {
+    display: flex;
+    justify-content: end;
+}
+
 .navicon {
-    margin-left: 88vw;
-    margin-right: 0.5vmax;
     margin-top: 1vmax;
+    margin-right: 1vmax;
 }
 
 .navicon2 {
-    margin-right: 0.5vmax;
+    margin-top: 1vmax;
+    margin-left: 1vmax;
 }
 
 form > button[class="btn btn-outline-dark"] {
     width: 8vmax;
+}
+
+select {
+    width: 15vmax;
+    height: 2.5vmax;
+}
+
+.viewlinks {
+    display: flex;
+    justify-content: space-between;
+}
+
+.house3 {
+    margin-right: 3.5vmax;
+    margin-left: 1vmax;
+    margin-top: 1vmax;
+}
+
+.viewtext {
+    margin-top: 1vmax;
+    font-weight: bold;
+}
+
+.viewicons {
+    margin-top: 1vmax;
+    margin-right: 1vmax;
+}
+
+.headertext,
+.username,
+.password,
+.delete {
+    margin-top: 2vmax;
+    margin-left: 2vmax;
+    margin-bottom: 2vmax;
+}
+
+.accountform,
+.deleteform {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.accountbtn,
+.delete > form > .btn-danger,
+.usernamebtn {
+    width: 17.5vmax !important;
+}
+
+.usernamechange {
+    margin-top: 0.5vmax !important;
+    margin-bottom: 1vmax !important;
+}
+
+.accountbtn:hover {
+    transform: scale(1.02);
+}
+
+.alert {
+    width : 38vmax;
 }
