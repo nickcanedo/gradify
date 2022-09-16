@@ -31,7 +31,13 @@
             <tbody class="table-group-divider">
                 {% for course in courses %}
                 <tr>
-                    <td><a href="/view"><button type="button" class="btn btn-outline-dark">{{ course['course_code'] }}</button></a></td>
+                    <td>
+                        <form action="/view" method="POST">
+                            <input type="hidden" value="{{ course['course_code'] }}" name="code" id="code">
+                            <input type="hidden" value="{{ course['course_name'] }}" name="name" id="name">
+                            <button type="submit" class="btn btn-outline-dark">{{ course['course_code'] }}</button>
+                        </form>
+                    </td>
                     <td>{{ course['course_name'] }}</td>
                 </tr>
                 {% endfor %}

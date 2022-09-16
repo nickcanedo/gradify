@@ -18,20 +18,45 @@
     <!-- Table using bootstrap -->
     <div class="container-fluid">
         <table class="table table-striped">
+            <tr>
+                <th>{{ course[0]['course_code'] }}: {{ course[0]['course_name'] }}</th>
+            </tr>
+        </table>
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Course Code</th>
-                    <th scope="col">Course Name</th>
-                    <th scope="col">Course Grade</th>
+                    <th>Assignment Name</th>
+                    <th>Assignment Weight</th>
+                    <th>Assignment Grade</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
+                {% for assignment in assignments %}
                 <tr>
-                    <td><a href="/view"><button type="button" class="btn btn-outline-dark">MIE230</button></a></td>
-                    <td>Engineering Analysis</td>
-                    <td>98%</td>
+                    <td>{{ assignment['assignment_name'] }}</td>
+                    <td>{{ assignment['weight'] }}%</td>
+                    <td>{{ assignment['grade'] }}%</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>
+                        <a href="/assignmentadd"><i class="fa-solid fa-plus"></i></a>
+                    </td>
+                    <td>
+                        <a href="/grades"><i class="fa-solid fa-table"></i></a>
+                    </td>
+                    <td>
+                        <a href="/assignmentremove"><i class="fa-solid fa-minus"></i></a>
+                    </td>
                 </tr>
             </tbody>
+            <tfoot class="table-group-divider">
+                <tr>
+                    <th>TOTALS</th>
+                    <th>2%</th>
+                    <th>96%</th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </body>

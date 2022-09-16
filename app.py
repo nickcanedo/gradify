@@ -122,6 +122,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+
 @app.route("/grades", methods=["GET", "POST"])
 @login_required
 def grades():
@@ -133,7 +134,20 @@ def grades():
 @app.route("/view", methods=["GET", "POST"])
 @login_required
 def view():
-    return render_template("view.html")
+    if request.method == "POST":
+        if not request.form.get('code') or not request.form.get('name'):
+            return redirect("/")
+        code = request.form.get('code')
+        name = request.form.get('name')
+        username = session['name']
+        id = db.execute('SELECT id FROM courses WHERE username = ? AND course_name = ? AND course_code = ?;',username,name,code)[0]['id']
+        
+        # get course info
+        course = db.execute("SELECT * FROM courses WHERE username = ? AND course_name = ? AND course_code = ?;",username,name,code)
+        assignments = db.execute("SELECT * FROM assignments WHERE course_id = ?;",id)
+        return render_template("view.html",assignments=assignments, course=course)
+    else:
+        return redirect("/grades")
 
 
 @app.route("/add", methods=["GET", "POST"])
@@ -185,3 +199,47 @@ def drop():
     
     else:
         return render_template("drop.html")
+    
+
+@app.route("/assignmentadd", methods=["GET", "POST"])
+@login_required
+def assignmentadd():
+    if request.method == "POST":
+        name = request.form.get("name")
+        weight = int(request.form.get("weight"))
+        grade = int(request.form.get("grade"))
+        course = request.form.get('course')
+        username = session['name']
+        course_id = db.execute("SELECT id FROM courses WHERE course_code = ? AND username = ?;",course,username)[0]['id']
+        
+        # form validation
+        if not name or not course or not weight or not grade:
+            error = "Please fill out all of the required fields"
+            return render_template("assignment_add.html", error=error)
+        elif weight < 0 or grade < 0:
+            return render_template("assignment_add.html", error=error)
+        else:
+            db.execute("INSERT INTO assignments (assignment_name,course_id,username,grade,weight) VALUES (?,?,?,?,?);",name,course_id,username,grade,weight)
+            return redirect("/grades")
+    else:
+        return render_template("assignment_add.html")
+    
+    
+@app.route("/assignmentremove", methods=["GET", "POST"])
+@login_required
+def assignmentremove():
+    if request.method == "POST":
+        name = request.form.get("name")
+        course = request.form.get('course')
+        username = session['name']
+        course_id = db.execute("SELECT id FROM courses WHERE course_code = ? AND username = ?;",course,username)[0]['id']
+        
+        # form validation
+        if not name or not course:
+            error = "Please fill out all of the required fields"
+            return render_template("assignment_remove.html", error=error)
+        else:
+            db.execute("DELETE FROM assignments WHERE assignment_name = ? AND username = ? AND course_id = ?;",name,username,course_id)
+            return redirect("/grades")
+    else:
+        return render_template("assignment_remove.html")

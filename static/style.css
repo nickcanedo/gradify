@@ -195,3 +195,7 @@ a:hover {
 .navicon2 {
     margin-right: 0.5vmax;
 }
+
+form > button[class="btn btn-outline-dark"] {
+    width: 8vmax;
+}
