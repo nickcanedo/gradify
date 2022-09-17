@@ -366,3 +366,6 @@ def assignmentremove():
         course_id = db.execute("SELECT id FROM courses WHERE course_code = ? AND username = ?;",course,username)[0]['id']
         assignments = db.execute("SELECT assignment_name FROM assignments WHERE course_id = ? AND username = ?;",course_id,username)
         return render_template("assignment_remove.html",assignments=assignments, course=course)
+    
+if __name__ == '__main__':
+    app.run()
