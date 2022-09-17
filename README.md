@@ -2,7 +2,7 @@
 An intuitive grading software for students
 
 # Video Demo: 
-[Video Demonstration](youtube.com)
+[Video Demonstration](https://youtu.be/rUGVC7Z3PqY)
 
 # Inspiration & Process:
 Since I began writing tests and exams, I always received tests and their respective grades but lost track of them periodically. I would always wonder what my **current grade** in the course was, but had to wait to the last week prior to exams for the teacher to release that information.
